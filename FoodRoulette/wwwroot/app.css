@@ -1,0 +1,239 @@
+@import url('https://fonts.googleapis.com/css2?family=Figtree:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400;1,6..72,500&family=DM+Mono:wght@400;500&display=swap');
+
+/* === FIGMA TOKENS & RESET === */
+:root {
+    --color-paper: #F7F6F2;
+    --color-line: #E7E5E4;
+    --color-matcha: #15803D;
+    --color-matcha-deep: #166534;
+    --color-matcha-wash: #ECF5EE;
+    --color-tangerine: #FB923C;
+    --color-tangerine-wash: #FFF1E5;
+    --color-sage: #4D7C0F;
+    --color-sage-wash: #F1F6E6;
+    --color-ink: #1C1917;
+    --color-stone: #78716C;
+    --font-sans: 'Figtree', ui-sans-serif, system-ui, sans-serif;
+    --font-serif: 'Newsreader', Georgia, serif;
+    --font-mono: 'DM Mono', ui-monospace, monospace;
+    --shadow-card: 0 4px 20px rgba(0,0,0,.05);
+    --shadow-modal: 0 10px 30px rgba(0,0,0,.06);
+}
+
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+}
+
+body {
+    background-color: var(--color-paper);
+    background-image: radial-gradient(1200px 600px at 85% -10%, #E6F1E8 0%, transparent 60%), radial-gradient(800px 500px at -10% 110%, #FDEBDB 0%, transparent 55%);
+    color: var(--color-ink);
+    font-family: var(--font-sans);
+    -webkit-font-smoothing: antialiased;
+    min-height: 100vh;
+    line-height: 1.5;
+}
+
+::selection {
+    background: var(--color-matcha);
+    color: #fff;
+}
+
+/* === TYPOGRAPHY HELPERS === */
+.font-serif {
+    font-family: var(--font-serif);
+}
+
+.font-mono {
+    font-family: var(--font-mono);
+}
+
+/* === CARDS & CONTAINERS === */
+.card {
+    background: #FFFFFF;
+    border: 1px solid var(--color-line);
+    border-radius: 1rem;
+    box-shadow: var(--shadow-card);
+}
+
+/* === BUTTONS === */
+button {
+    font-family: inherit;
+    cursor: pointer;
+    border: none;
+    background: none;
+    transition: all 0.2s ease;
+}
+
+.btn-primary {
+    background: var(--color-matcha);
+    color: #FFFFFF;
+    font-weight: 600;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: background 0.2s ease;
+}
+
+    .btn-primary:hover {
+        background: var(--color-matcha-deep);
+    }
+
+    .btn-primary:disabled {
+        opacity: 0.8;
+        cursor: not-allowed;
+    }
+
+.btn-outline {
+    border: 1px solid var(--color-line);
+    background: #FFFFFF;
+    color: var(--color-ink);
+    font-weight: 600;
+    border-radius: 9999px;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    transition: all 0.2s ease;
+}
+
+    .btn-outline:hover {
+        border-color: var(--color-ink);
+    }
+
+.pill-btn {
+    border: 1px solid var(--color-line);
+    background: #FFFFFF;
+    color: var(--color-ink);
+    border-radius: 9999px;
+    transition: all 0.2s ease;
+    font-size: 13px;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+}
+
+    .pill-btn:hover {
+        border-color: rgba(120, 113, 108, 0.5);
+    }
+
+    .pill-btn.active {
+        border-color: var(--color-matcha);
+        background: var(--color-matcha);
+        color: #FFFFFF;
+        box-shadow: 0 4px 12px rgba(21, 128, 61, 0.22);
+    }
+
+    .pill-btn.active-subtle {
+        border-color: var(--color-matcha);
+        background: var(--color-matcha-wash);
+        color: var(--color-matcha);
+        font-weight: 600;
+    }
+
+/* === FORMS & INPUTS === */
+.input-wrapper {
+    display: flex;
+    height: 48px;
+    align-items: center;
+    gap: 10px;
+    border-radius: 12px;
+    border: 1px solid var(--color-line);
+    background: #FFFFFF;
+    padding: 0 14px;
+    color: var(--color-stone);
+    transition: all 0.2s ease;
+}
+
+    .input-wrapper:focus-within {
+        border-color: var(--color-matcha);
+        color: var(--color-matcha);
+        box-shadow: 0 0 0 4px rgba(21, 128, 61, 0.12);
+    }
+
+    .input-wrapper input {
+        height: 100%;
+        flex: 1;
+        background: transparent;
+        border: none;
+        outline: none;
+        font-size: 15px;
+        color: var(--color-ink);
+        font-family: inherit;
+    }
+
+/* === RANGE SLIDER === */
+.range-slider {
+    appearance: none;
+    height: 6px;
+    border-radius: 9999px;
+    cursor: pointer;
+    outline: none;
+}
+
+    .range-slider::-webkit-slider-thumb {
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 9999px;
+        background: #fff;
+        border: 2px solid var(--color-matcha);
+        box-shadow: 0 2px 6px rgba(0,0,0,.12);
+        cursor: pointer;
+    }
+
+    .range-slider::-moz-range-thumb {
+        width: 18px;
+        height: 18px;
+        border-radius: 9999px;
+        background: #fff;
+        border: 2px solid var(--color-matcha);
+        cursor: pointer;
+    }
+
+/* === SWITCH TOGGLE === */
+.switch-track {
+    position: relative;
+    height: 24px;
+    width: 44px;
+    border-radius: 9999px;
+    background: var(--color-line);
+    cursor: pointer;
+    transition: background 0.2s ease;
+}
+
+    .switch-track.on {
+        background: var(--color-matcha);
+    }
+
+.switch-thumb {
+    position: absolute;
+    top: 2px;
+    left: 2px;
+    width: 20px;
+    height: 20px;
+    border-radius: 50%;
+    background: #FFFFFF;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.2);
+    transition: left 0.2s ease;
+}
+
+.switch-track.on .switch-thumb {
+    left: 22px;
+}
+
+/* === NAVIGATION BAR === */
+.navbar-container {
+    max-width: 1440px;
+    margin: 0 auto;
+    height: 76px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 32px;
+}
