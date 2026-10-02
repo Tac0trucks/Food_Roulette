@@ -1,23 +1,44 @@
-﻿<!DOCTYPE html>
-<html lang="en">
-
-<head>
+﻿<head>
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <base href="/" />
-    <ResourcePreloader />
-    <link rel="stylesheet" href="@Assets["lib/bootstrap/dist/css/bootstrap.min.css"]" />
-    <link rel="stylesheet" href="@Assets["app.css"]" />
-    <link rel="stylesheet" href="@Assets["FoodRoulette.styles.css"]" />
-    <ImportMap />
-    <link rel="icon" type="image/png" href="favicon.png" />
+
+    <!-- Google Fonts from Figma -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=DM+Mono:wght@400;500&family=Figtree:wght@400;500;600;700;800&family=Newsreader:ital,opsz,wght@0,6..72,500;1,6..72,400;1,6..72,500&display=swap" rel="stylesheet">
+
+    <!-- Tailwind CSS CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+            tailwind.config = {
+                theme: {
+                    extend: {
+                        colors: {
+                            paper: '#F7F6F2',
+                            line: '#E7E5E4',
+                            matcha: '#15803D',
+                            'matcha-deep': '#166534',
+                            'matcha-wash': '#ECF5EE',
+                            tangerine: '#FB923C',
+                            'tangerine-wash': '#FFF1E5',
+                            sage: '#4D7C0F',
+                            'sage-wash': '#F1F6E6',
+                            ink: '#1C1917',
+                            stone: '#78716C',
+                        },
+                        fontFamily: {
+                            sans: ['Figtree', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+                            serif: ['Newsreader', 'Georgia', 'serif'],
+                            mono: ['DM Mono', 'ui-monospace', 'monospace'],
+                        },
+                        boxShadow: {
+                            card: '0 4px 20px rgba(0,0,0,.05)',
+                        }
+                    }
+                }
+            }
+    </script>
+    <link rel="stylesheet" href="app.css" />
     <HeadOutlet />
 </head>
-
-<body>
-    <Routes />
-    <ReconnectModal />
-    <script src="@Assets["_framework/blazor.web.js"]"></script>
-</body>
-
-</html>
