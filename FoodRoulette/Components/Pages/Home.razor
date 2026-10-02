@@ -15,7 +15,7 @@
                 <FoodRoulette.Shared.Icons Name="plus" /> Add Custom Dish
             </button>
             <button class="flex h-10 items-center gap-1.5 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink transition hover:border-matcha">
-                <FoodRoulette.Shared.Icons Name="bookmark" /> Saved Meals (@State.BookmarksCount)
+                <FoodRoulette.Shared.Icons Name="bookmark" /> Saved Meals (@State.BookmarksCount
             </button>
             <a href="/settings" class="grid size-10 place-items-center rounded-full text-stone transition hover:bg-white hover:text-ink">
                 <FoodRoulette.Shared.Icons Name="gear" />
@@ -157,7 +157,7 @@
     {
         if (!State.IsAuthenticated)
         {
-            Nav.NavigateTo("/auth");
+            Nav.NavigateTo("/auth", forceLoad: true);
             return;
         }
         currentBudget = State.DefaultBudget;

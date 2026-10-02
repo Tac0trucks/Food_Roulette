@@ -1,5 +1,146 @@
-﻿<h3>ProfilePage</h3>
+﻿@page "/profile"
+@rendermode InteractiveServer
+@inject FoodRouletteApp.Models.AppState State
+@inject NavigationManager Nav
+
+<div class="min-h-screen bg-paper bg-[radial-gradient(1200px_600px_at_85%_-10%,#E6F1E8_0%,transparent_60%),radial-gradient(800px_500px_at_-10%_110%,#FDEBDB_0%,transparent_55%)]">
+    <!-- Navbar -->
+    <header class="mx-auto flex h-[76px] max-w-[1440px] items-center justify-between px-4 sm:px-8">
+        <div class="flex items-center gap-5">
+            <a href="/" class="flex items-center gap-2.5 text-ink">
+                <span class="grid size-9 place-items-center rounded-[10px] bg-ink text-white"><FoodRoulette.Shared.Icons Name="dice" /></span>
+                <span class="text-[19px] font-extrabold tracking-[-0.02em]">FoodRoulette</span>
+            </a>
+            <span class="hidden h-5 w-px bg-line sm:block"></span>
+            <a href="/" class="hidden items-center gap-1.5 text-sm font-semibold text-stone transition hover:text-matcha sm:flex">
+                ← Back to Dashboard
+            </a>
+        </div>
+        <div class="flex h-10 items-center gap-2 rounded-full border border-line bg-white py-1 pl-1 pr-3">
+            <span class="grid size-8 place-items-center rounded-full bg-matcha text-xs font-bold text-white">@State.Initials</span>
+            <span class="text-sm font-semibold text-ink">@State.DisplayName</span>
+        </div>
+    </header>
+
+    <!-- Account Hub -->
+    <main class="mx-auto grid max-w-[1100px] gap-6 px-4 pb-10 pt-6 sm:px-8 lg:grid-cols-[240px_1fr] lg:px-0">
+        <!-- Sidebar Navigation -->
+        <aside class="h-fit rounded-2xl border border-line bg-white p-4 shadow-card lg:sticky lg:top-6">
+            <p class="px-3 pb-3 pt-1 font-mono text-[11px] uppercase tracking-[0.14em] text-stone">Account Hub</p>
+            <nav class="flex flex-col gap-1">
+                <a href="/profile" class="relative flex h-11 items-center gap-2.5 rounded-xl bg-matcha-wash px-3 text-left text-sm font-bold text-matcha-deep">
+                    <span class="absolute inset-y-2 left-0 w-[3px] rounded-full bg-matcha"></span>
+                    <FoodRoulette.Shared.Icons Name="user" /> Profile
+                </a>
+                <a href="/settings" class="flex h-11 items-center gap-2.5 rounded-xl px-3 text-left text-sm font-medium text-stone hover:bg-paper hover:text-ink">
+                    <FoodRoulette.Shared.Icons Name="sliders" /> Settings & Preferences
+                </a>
+            </nav>
+            <div class="my-3 h-px bg-line"></div>
+            <button @onclick="Logout" class="flex h-11 w-full items-center gap-2.5 rounded-xl px-3 text-sm font-medium text-stone transition hover:bg-red-50 hover:text-red-700">
+                Sign Out
+            </button>
+        </aside>
+
+        <!-- Profile Details Content -->
+        <div class="flex flex-col gap-6">
+            <div>
+                <h1 class="font-serif text-[36px] font-medium leading-[1.05] tracking-[-0.015em] text-ink">Profile <em class="italic">Details</em></h1>
+                <p class="mt-2 text-[15px] text-stone">Manage your identity, contact information, and account security.</p>
+            </div>
+
+            <!-- Identity Card -->
+            <section class="rounded-2xl border border-line bg-white p-7 shadow-card">
+                <div class="mb-5 flex items-start justify-between">
+                    <div>
+                        <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-matcha">01 · Identity</p>
+                        <h2 class="mt-1 font-serif text-[24px] font-medium text-ink">Personal Information</h2>
+                    </div>
+                </div>
+
+                <div class="flex flex-wrap items-center gap-5 rounded-xl border border-line bg-paper/60 p-4">
+                    <span class="grid size-[88px] place-items-center rounded-full bg-matcha text-[28px] font-bold text-white ring-4 ring-white">@State.Initials</span>
+                    <div>
+                        <button class="flex h-10 items-center gap-2 rounded-full border border-line bg-white px-4 text-sm font-semibold text-ink transition hover:border-matcha hover:text-matcha">
+                            Upload New Photo
+                        </button>
+                        <p class="mt-2 text-[12.5px] text-stone">JPG or PNG, square, up to 2 MB.</p>
+                    </div>
+                </div>
+
+                <div class="mt-6 grid gap-4 md:grid-cols-2">
+                    <div>
+                        <label class="mb-1.5 block text-[13px] font-semibold text-ink">Display Name</label>
+                        <div class="flex h-12 items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 focus-within:border-matcha focus-within:ring-4 focus-within:ring-matcha/10">
+                            <input class="h-full w-full bg-transparent text-[15px] text-ink outline-none" @bind="State.DisplayName" />
+                        </div>
+                    </div>
+                    <div>
+                        <label class="mb-1.5 block text-[13px] font-semibold text-ink">Username</label>
+                        <div class="flex h-12 items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 focus-within:border-matcha focus-within:ring-4 focus-within:ring-matcha/10">
+                            <input class="h-full w-full bg-transparent text-[15px] text-ink outline-none" @bind="State.Username" />
+                        </div>
+                    </div>
+                    <div class="md:col-span-2">
+                        <label class="mb-1.5 block text-[13px] font-semibold text-ink">Primary Email</label>
+                        <div class="flex h-12 items-center gap-2.5 rounded-xl border border-line bg-white px-3.5 focus-within:border-matcha focus-within:ring-4 focus-within:ring-matcha/10">
+                            <input class="h-full w-full bg-transparent text-[15px] text-ink outline-none" @bind="State.Email" />
+                        </div>
+                    </div>
+                </div>
+
+                <div class="mt-6 flex items-center justify-end gap-4 border-t border-line pt-5">
+                    @if (!string.IsNullOrEmpty(saveMessage))
+                    {
+                        <span class="text-sm font-semibold text-matcha">@saveMessage</span>
+                    }
+                    <button class="h-11 rounded-full bg-matcha px-6 text-sm font-semibold text-white transition hover:bg-matcha-deep" @onclick="SaveProfile">
+                        Save Profile
+                    </button>
+                </div>
+            </section>
+
+            <!-- Danger Zone -->
+            <section class="flex flex-wrap items-center gap-5 rounded-2xl border border-red-200 bg-white p-7 shadow-card">
+                <div class="min-w-[220px] flex-1">
+                    <p class="font-mono text-[11px] uppercase tracking-[0.14em] text-red-700">02 · Danger Zone</p>
+                    <h2 class="mt-1 text-[17px] font-semibold text-ink">Delete Account</h2>
+                    <p class="mt-0.5 text-sm text-stone">Permanently remove your account and all associated preferences.</p>
+                </div>
+                <button @onclick="DeleteAccount" class="h-11 rounded-full border border-red-600 px-5 text-sm font-semibold text-red-600 transition hover:bg-red-600 hover:text-white">
+                    Delete Account
+                </button>
+            </section>
+        </div>
+    </main>
+</div>
 
 @code {
+    private string saveMessage = "";
 
+    protected override void OnInitialized()
+    {
+        if (!State.IsAuthenticated) Nav.NavigateTo("/auth");
+    }
+
+    private void SaveProfile()
+    {
+        State.NotifyChanged();
+        saveMessage = "Profile updated successfully!";
+    }
+
+    private void Logout()
+    {
+        State.IsAuthenticated = false;
+        State.NotifyChanged();
+        Nav.NavigateTo("/auth");
+    }
+
+    private void DeleteAccount()
+    {
+        State.IsAuthenticated = false;
+        State.DisplayName = "Guest";
+        State.NotifyChanged();
+        Nav.NavigateTo("/auth");
+    }
 }
